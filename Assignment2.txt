@@ -1,0 +1,70 @@
+use Customer
+select * from Customers
+insert into Customers values(6,'Omkar','Watson','Berlin','Germany',32756367657)
+insert into Customers values(7,'Aurora','Kelvin','Moscow','Russia',75678367657)
+select * from Customers WHERE Country IN('Germany')
+select FirstName +''+LastName as Name from Customers
+select * from Customers where FirstName Like ('_u%');
+select * from orders
+select * from orderitem
+select * from orderitem where UnitPrice Between 10 and 20;
+select *from Orders ORDER BY OrderDate
+Alter table Orders ADD shipman nvarchar(40);
+update Orders set shipman='La corne dabondane' where id='7'
+update Orders set shipman='Hendry poll' where id='8'
+update Orders set shipman='Shen Warnor' where id='9'
+update Orders set shipman='La corne dabondane' where id='10'
+select id from Orders where shipman= 'La corne dabondane' and OrderDate between '2022-02-16' and '2022-04-02'
+select * from Product
+Alter table Product Add SuplierName nvarchar(50);
+update Product set SuplierName='Exotic Liquids'where id=1;
+update Product set SuplierName='Acer'where id=2;
+update Product set SuplierName='Dell'where id=3;
+update Product set SuplierName='Lexi'where id=4;
+update Product set SuplierName='Avis Industry'where id=5;
+SELECT ProductName FROM Product where SuplierName='Exotic Liquids' 
+select AVG (Quantity) from orderitem
+select * from orderitem
+
+select shipman from Orders
+
+CREATE TABLE [dbo]. [Employee]([Empid] [Int] IDENTITY (1, 1) NOT NULL Primary key,[EmpNumber] [nvarchar](50) NOT NULL,
+[EmpFirstName] [nvarchar](150) NOT NULL,[EmpLastName] [nvarchar](150) NULL,[EmpEmail] [nvarchar](150) NULL,
+[Managerid] [int] NULL,[Departmentid] [INT])
+
+insert into Employee
+(EmpNumber,EmpFirstName,EmpLastName,EmpEmail,Managerid,Departmentid)
+values('A001','Samir','Singh','samir@abc.com',2,2)
+insert into Employee
+(EmpNumber,EmpFirstName,EmpLastName,EmpEmail,Managerid,Departmentid)
+values('A002','Amit','Kumar','amit@abc.com',1,1)
+insert into Employee (EmpNumber,EmpFirstName,EmpLastName,EmpEmail,Managerid,Departmentid)
+values('A003','Neha','Sharma','neha@abc.com',1,2)
+insert into Employee (EmpNumber,EmpFirstName,EmpLastName,EmpEmail,Managerid,Departmentid)
+values('A004','Vivek','Kumar','vivek@abc.com',1,NULL)
+select * from Employee
+
+CREATE TABLE [dbo].[Department]([Departmenttid] [int] IDENTITY (1, 1) NOT NULL primary key,[DepartmentName] [nvarchar](255) NOT NULL)
+insert into Department(DepartmentName)
+values('Accounts')
+insert into Department(DepartmentName)
+values('Admin')
+insert into Department(DepartmentName)
+values('HR')
+insert into Department(DepartmentName)
+values('Technology')
+select * from Department
+
+ SELECT Emp1.Empid, Emp1.EmpFirstName+' '+Emp1.EmpLastName as EmployeeName, 
+    Emp2.EmpFirstName+' '+Emp2.EmpLastName as ManagerName 
+  FROM Employee Emp1 
+     INNER JOIN Employee Emp2 
+    ON Emp1.Managerid=Emp2.Empid
+
+	select Orderid,Productid,UnitPrice from orderitem where UnitPrice <50;
+	select * from orderitem
+	select * from orders
+	select * from Product
+	 
+	select SUM (UnitPrice) from Product where SuplierName ='Exotic Liquids' AND UnitPrice>50;
+   

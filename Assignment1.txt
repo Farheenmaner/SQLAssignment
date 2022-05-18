@@ -1,0 +1,77 @@
+create database Customer
+use Customer
+Create table Customers
+(
+Id int primary key,
+FirstName nvarchar(40)Not Null,
+LastName nvarchar(40),
+City nvarchar(40),
+Country nvarchar(40),
+Phone nvarchar(20), 
+)
+insert into Customers values( 1,'Dipali','Naik','Panvel','India','9876593728')
+insert into Customers values( 2,'Savita','Patil','pen','India','8970375905')
+insert into Customers values( 3,'Roy','Sen','Roha','Australia','7890654320')
+insert into Customers values( 4,'Ganesh','Garje','Moha','Russia','7643870886')
+insert into Customers values( 5,'Ganesh','Naik','Pune','India','7659378776')
+select * from Customers
+
+Create table Product
+(
+Id int primary key,
+ProductName nvarchar(50), UnitPrice decimal(12,2),Package nvarchar(30), IsDicontinued bit
+)
+
+insert into Product values(1,'T.V','189.87','Paperboard Box',1)
+insert into Product values(2,'Laptop','143.89','Poly Bag',0)
+insert into Product values(3,'HP Printer','36.98','Plastic Box',1)
+insert into Product values(4,'Pen','89.87','Plastic bag',1)
+insert into Product values(5,'Stapler','67.8','Rigid Box',0)
+
+Select * from Product
+
+
+
+Create table Orders
+(
+id int primary key, OrderDate datetime NOT NULL, OrderNumber nvarchar(10), CustomerId int foreign key references Customers(Id), TotalAmount decimal(12,2)
+)
+insert into Orders values( 7,'2022-03-4 12:45:04', 43, 1,763.9)
+insert into Orders values(8,'2022-07-22 21:43:06', 97, 2,68.9) 
+insert into Orders values(9,'2018-04-02 09:12:36', 678,3,348.8)
+insert into Orders values(10,'2022-01-29 17:8:09' ,234, 4, 765.9)
+
+select * from Orders
+Create INDEX Item ON Orders(id)
+Create INDEX Item ON Product(id)
+Create INDEX Customers ON Orders(id)
+Create INDEX OrderDates ON Orders(OrderDate)
+
+
+Create table orderitem
+(
+Id int NOT NULL Primary key, Orderid int FOREIGN KEY REFERENCES Orders(id),
+Productid int FOREIGN KEY REFERENCES Product(id), UnitPrice decimal(12,2), Quantity int)
+
+insert into orderitem values(3,7,1,234.7,6)
+insert into orderitem values(4,9,4,89.87,4)
+insert into orderitem values(5,10,5,457.8,9)
+insert into orderitem values(1,8,2,189.87,4)
+insert into orderitem values(2,8,2,200.87,7)
+select * from Orderitem
+
+select * from Product
+Create index idx_ProductSupplierId ON Product(id)
+Create index idx_ProductName ON Product(ProductName)
+select * from Orders
+Create index idx_OrderCustomerId ON Orders(CustomerId)
+Create index idx_OrderDate ON Orders(OrderDate)
+select * from Orderitem
+Create index idx_OrderitemOrderId ON Orderitem(OrderId)
+Create index idx_OrderitemProductid ON Orderitem(ProductId)
+select * from Customers
+Create index idx_CustomerName ON Customers(FirstName, LastName);
+Update Customers Set FirstName= 'Seema' WHERE Id =8;
+
+select Country from Customers where Country Like ('I%') or Country Like ('A%');
+select * from Customers where LastName Like ('__i%');
